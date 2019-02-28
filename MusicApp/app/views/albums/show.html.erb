@@ -1,0 +1,7 @@
+<h2><%= @album.title %></h2>
+<h4><%= @album.year %></h4>
+<h4>Live</h4>
+
+<a href="<%= edit_album_url(@album)%>">Edit Album</a>
+<br>
+<a href="<%= band_url(@album.band) %>">Back to <%= @album.band.name %></a>

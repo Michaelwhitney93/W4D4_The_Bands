@@ -1,0 +1,36 @@
+
+
+<h3>Editing <%= @album.title%></h3>
+
+<form action="<%= album_url(@album) %>" method="POST">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="hidden" name="_method" value="PATCH">
+    <label for="album">Select Band</label>
+        <select name="album[band_id]">
+            <option value="<%= @album.band.id %>"><%= @album.band.name %></option>
+            <% @bands.each do |band| %>
+            <% unless @album.band == band %>
+                <option value="<%= band.id %>"><%= band.name %></option>
+            <% end %>
+        <% end %>
+        </select>
+    <input type="radio" name="album[live]" value="<%= true %>" checked>live
+    <label for="album_title">Title</label>
+    <input type="text" name="album[title]" value="<%= @album.title %>">
+    <label for="album">Select year made</label>
+
+    <select name="album[year]">
+    <option value="<%= @album.year %>"><%= @album.year %></option>
+        <% (1920..2019).reverse_each do |num| %>
+        <% unless num == @album.year %>
+        <option value="<%= num %>"><%= num %></option>
+        <% end %>
+    <% end %>
+    </select>
+
+
+
+    <input type="submit" value="Edit Album">
+
+
+</form>
